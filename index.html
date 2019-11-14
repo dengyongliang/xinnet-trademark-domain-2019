@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="http://imgi.xinnet.com/www/newcss/newpop.css">
     <style>
 /* zcReset */
 html, body, div, span, object, iframe,
@@ -494,7 +495,21 @@ body{
   color: #666;
   line-height: 28px;
 }
-
+        .bgw_tc1{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 1000000;background: rgba(0, 0, 0,.6);display: block;}
+        .bgw_tc1 .xg_tc{width: 500px;background: #fff;z-index: 1001;position: absolute;top: 220px;left: 50%;margin-left: -214px;}
+        .bgw_tc1 .tc_bottom1{height:50px;}
+        .bgw_tc1 .tc_bottom1>div{/* width: 72px; */padding-top: 8px;margin-right: 20px;text-align: center;}
+        .bgw_tc1 .tc_bottom1 a{/* width: 70px; */height: 30px;display: inline-block;border: 1px solid #2d91e0;text-align: center;line-height: 30px;border-radius: 4px;background-color: #2d91e0;color: #fff;padding: 0 22px;}
+        .bgw_tc1 .tc_bottom1 a:hover{opacity: 0.7;}
+        .bgw_tc1 .top_header1{height:44px;border-bottom: 1px solid #ddd;background-color: #f3f2f2;}
+        .bgw_tc1 .top_header1 h3{text-align: center;font-size: 16px;line-height: 44px;color: #444;}
+        .bgw_tc1 .top_header1 .tc_cha{border: none;background: none;position: absolute;right: 16px;top: 12px;font-size: 20px;opacity: .7;cursor: pointer;color: #989898;font-family: Simsun;}
+        .bgw_tc1 .top_header1 .tc_cha:hover{opacity: 1;}
+        .bgw_tc1 .tc_content1{border-bottom: 1px solid #ddd;}
+        .bgw_tc1 .tc_content1 p{font-size: 14px;color:#444;padding: 32px 30px;text-align: center;}
+        .bgw_tc1 .tc_content1 p a{color: #4646e8;margin: 0 2px;}
+        .bgw_tc1 .tc_content1 p a:hover{text-decoration: underline;}
+        .bgw_tc1 .top_header1 svg{width:22px !important;height: 22px !important;}
     </style>
   </head>
   <body>
@@ -529,7 +544,7 @@ body{
                   </div>
                   <div class="right">
                     <em class="money">￥4400/年</em>
-                    <a href="#" class="btn">立即注册</a>
+                    <a href="#" class="btn btnToReg">立即注册</a>
                   </div>
                 </div>
               </div>
@@ -549,7 +564,7 @@ body{
                   </div>
                   <div class="right">
                     <em class="money">￥4400/年</em>
-                    <a href="#" class="btn">立即注册</a>
+                    <a href="#" class="btn btnToReg">立即注册</a>
                   </div>
                 </div>
               </div>
@@ -569,7 +584,7 @@ body{
                   </div>
                   <div class="right">
                     <em class="money">￥4400/年</em>
-                    <a href="#" class="btn">立即注册</a>
+                    <a href="#" class="btn btnToReg">立即注册</a>
                   </div>
                 </div>
               </div>
@@ -589,7 +604,7 @@ body{
                   </div>
                   <div class="right">
                     <em class="money">￥4400/年</em>
-                    <a href="#" class="btn">立即注册</a>
+                    <a href="#" class="btn btnToReg">立即注册</a>
                   </div>
                 </div>
               </div>
@@ -729,19 +744,51 @@ body{
         </div>
       </div>
     </div>
+    <!-- tc -->
+    <div class = "bgw_tc1" id = "tc_anniv" style = "display: none;">
+      <div class = "xg_tc">
+        <div>
+          <div class = "top_header1">
+            <h3>提示</h3>
+            <a class = "tc_cha" id = "tc_cha" href = "javascript:;">×</a>
+          </div>
+          <div class = "tc_content1">
+            <p id = "tc_annivP" style="font-size: 18px;"></p>
+          </div>
+          <div class = "tc_bottom1">
+            <div>
+              <a href="http://www.baidu.com" id = "tc_sure">前往商标服务</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end -->
     <script src='http://imgi.xinnet.com/www/newjavascript/jquery.js'></script>
     <script>
-    $(function(){
-      $("body").delegate(".hd li", "click", function(){
-        var idx = $(this).index();
-        $(this).addClass("active").siblings("li").removeClass("active");
-        $("body").find(".bd li").eq(idx).show().siblings().hide();
-      });
-      $("body").delegate(".search button", "click", function(){
-        var idx = $(this).closest("li").index();
-        $("body").find(".bd li").eq(idx).find(".result").show();
-      });
-    })
+      $(function(){
+        $("body").delegate(".hd li", "click", function(){
+          var idx = $(this).index();
+          $(this).addClass("active").siblings("li").removeClass("active");
+          $("body").find(".bd li").eq(idx).show().siblings().hide();
+        });
+        $("body").delegate(".search button", "click", function(){
+          var idx = $(this).closest("li").index();
+          $("body").find(".bd li").eq(idx).find(".result").show();
+        });
+        $("body").delegate(".btnToReg", "click", function(){
+          bgw_tc("<b style='color: #ffd243'>！</b>您是否持有商标注册证书？<br /><br /><span style='font-size:12px'>.商标域名持有者须与相应商标注册人保持一致，否则不能注册.商标域名</span>");
+        });
+        
+        $("#tc_sure,#tc_cha").click(function(){
+          $("#tc_anniv").fadeOut(100);
+        });
+      })
+      function bgw_tc(txt,btn, url){
+        $("#tc_annivP").html(txt);
+        $("#tc_anniv").fadeIn(200);
+        $("#tc_sure").html(btn).attr("href", url);
+      };
     </script>
   </body>
 </html>
